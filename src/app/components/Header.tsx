@@ -22,12 +22,15 @@ export function Header() {
 
           {/* CTA */}
           <div className="flex items-center gap-3">
-            <button className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-[var(--tinka-text-primary)] border border-[var(--tinka-border)] rounded-xl hover:bg-white/5 transition-all duration-200">
-              Ver Demo
-            </button>
-            <button className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-xl hover:opacity-90 transition-all duration-200 shadow-lg shadow-[var(--tinka-magenta)]/25">
+
+            <a
+              href="https://tinka-bydevs.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-white bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-xl hover:opacity-90 transition-all duration-200 shadow-lg shadow-[var(--tinka-magenta)]/25"
+            >
               Probar Gratis
-            </button>
+            </a>
           </div>
         </div>
       </div>

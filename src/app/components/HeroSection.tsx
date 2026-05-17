@@ -37,12 +37,15 @@ export function HeroSection() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <button className="w-full sm:w-auto px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-xl hover:opacity-90 transition-all duration-200 shadow-2xl shadow-[var(--tinka-magenta)]/40">
+            <a
+              href="https://tinka-bydevs.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-xl hover:opacity-90 transition-all duration-200 shadow-2xl shadow-[var(--tinka-magenta)]/40 text-center"
+            >
               Empezar Ahora - Gratis
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 text-lg font-semibold text-[var(--tinka-text-primary)] border border-[var(--tinka-border)] rounded-xl hover:bg-white/5 transition-all duration-200">
-              Ver Video Demo
-            </button>
+            </a>
+
           </div>
 
           {/* Stats */}

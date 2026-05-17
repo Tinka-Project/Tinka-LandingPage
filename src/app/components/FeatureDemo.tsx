@@ -1,5 +1,5 @@
 import { Check, Play, Pause, Volume2, Maximize2 } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface FeatureDemoProps {
   id: string;
@@ -7,6 +7,7 @@ interface FeatureDemoProps {
   description: string;
   features: string[];
   videoPlaceholder: string;
+  videoSrc?: string;
   align: 'left' | 'right';
 }
 
@@ -16,6 +17,7 @@ export function FeatureDemo({
   description,
   features,
   videoPlaceholder,
+  videoSrc,
   align
 }: FeatureDemoProps) {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -53,6 +55,7 @@ export function FeatureDemo({
           <div className={`flex justify-center ${align === 'right' ? 'lg:order-1' : ''}`}>
             <IPhoneMockup
               videoPlaceholder={videoPlaceholder}
+              videoSrc={videoSrc}
               isPlaying={isPlaying}
               onPlayPause={() => setIsPlaying(!isPlaying)}
             />
@@ -65,10 +68,12 @@ export function FeatureDemo({
 
 function IPhoneMockup({
   videoPlaceholder,
+  videoSrc,
   isPlaying,
   onPlayPause
 }: {
   videoPlaceholder: string;
+  videoSrc?: string;
   isPlaying: boolean;
   onPlayPause: () => void;
 }) {
@@ -77,56 +82,71 @@ function IPhoneMockup({
       {/* iPhone 13 Pro Max Frame */}
       <div className="relative w-[340px] h-[694px] bg-[#1a1a1a] rounded-[56px] shadow-2xl border-[14px] border-[#1a1a1a] overflow-hidden">
         {/* Notch */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] h-[32px] bg-[#1a1a1a] rounded-b-3xl z-10"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[160px] h-[32px] bg-[#1a1a1a] rounded-b-3xl z-10" />
 
         {/* Screen */}
         <div className="relative w-full h-full bg-[var(--tinka-bg-deep)] overflow-hidden">
           {/* Video Placeholder Content */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <VideoPlaceholder videoPlaceholder={videoPlaceholder} />
+            {videoSrc ? (
+              <video 
+                src={videoSrc}
+                className="w-full h-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            ) : (
+              <VideoPlaceholder videoPlaceholder={videoPlaceholder} />
+            )}
           </div>
 
           {/* Play Button Overlay */}
-          <button
-            onClick={onPlayPause}
-            className="absolute inset-0 flex items-center justify-center z-20 bg-black/30 backdrop-blur-sm group-hover:bg-black/40 transition-all duration-300"
-          >
-            <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-              {isPlaying ? (
-                <Pause className="w-10 h-10 text-white" />
-              ) : (
-                <Play className="w-10 h-10 text-white ml-1" />
-              )}
-            </div>
-          </button>
+          {!videoSrc && (
+            <button
+              onClick={onPlayPause}
+              className="absolute inset-0 flex items-center justify-center z-20 bg-black/30 backdrop-blur-sm group-hover:bg-black/40 transition-all duration-300"
+            >
+              <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                {isPlaying ? (
+                  <Pause className="w-10 h-10 text-white" />
+                ) : (
+                  <Play className="w-10 h-10 text-white ml-1" />
+                )}
+              </div>
+            </button>
+          )}
 
           {/* Video Controls */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent z-10">
-            <div className="space-y-2">
-              {/* Progress Bar */}
-              <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
-                <div
-                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-full transition-all duration-300"
-                  style={{ width: isPlaying ? '40%' : '0%' }}
-                ></div>
-              </div>
-
-              {/* Control Buttons */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <button className="text-white/80 hover:text-white transition-colors">
-                    <Volume2 className="w-4 h-4" />
-                  </button>
-                  <span className="text-xs text-white/60">
-                    {isPlaying ? '0:08' : '0:00'} / 0:30
-                  </span>
+          {!videoSrc && (
+            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent z-10">
+              <div className="space-y-2">
+                {/* Progress Bar */}
+                <div className="relative h-1 bg-white/20 rounded-full overflow-hidden">
+                  <div
+                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[var(--tinka-magenta)] to-[var(--tinka-purple)] rounded-full transition-all duration-300"
+                    style={{ width: isPlaying ? '40%' : '0%' }}
+                  />
                 </div>
-                <button className="text-white/80 hover:text-white transition-colors">
-                  <Maximize2 className="w-4 h-4" />
-                </button>
+
+                {/* Control Buttons */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <button className="text-white/80 hover:text-white transition-colors">
+                      <Volume2 className="w-4 h-4" />
+                    </button>
+                    <span className="text-xs text-white/60">
+                      {isPlaying ? '0:08' : '0:00'} / 0:30
+                    </span>
+                  </div>
+                  <button className="text-white/80 hover:text-white transition-colors">
+                    <Maximize2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
 
@@ -137,7 +157,7 @@ function IPhoneMockup({
 }
 
 function VideoPlaceholder({ videoPlaceholder }: { videoPlaceholder: string }) {
-  const placeholders: Record<string, JSX.Element> = {
+  const placeholders: Record<string, React.JSX.Element> = {
     'voice-demo': <VoiceDemo />,
     'qr-demo': <QRDemo />,
     'sync-demo': <SyncDemo />,

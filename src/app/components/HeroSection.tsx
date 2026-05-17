@@ -4,9 +4,9 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden py-20 lg:py-32">
       {/* Background Gradients */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-[var(--tinka-magenta)]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-[var(--tinka-purple)]/20 rounded-full blur-3xl"></div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-0 -translate-x-1/2 w-96 h-96 bg-[var(--tinka-magenta)]/20 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-1/4 right-0 translate-x-1/2 w-96 h-96 bg-[var(--tinka-purple)]/20 rounded-full blur-[100px]"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">

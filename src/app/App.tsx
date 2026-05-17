@@ -21,6 +21,7 @@ export default function App() {
             'Confirmación inteligente con datos pre-llenados',
           ]}
           videoPlaceholder="voice-demo"
+          videoSrc="/voz.mov"
           align="left"
         />
 
@@ -34,6 +35,7 @@ export default function App() {
             'Compartir por WhatsApp directamente',
           ]}
           videoPlaceholder="qr-demo"
+          videoSrc="/qr.mov"
           align="right"
         />
 
@@ -47,6 +49,7 @@ export default function App() {
             'Notificaciones push en tiempo real',
           ]}
           videoPlaceholder="sync-demo"
+          videoSrc="/sincronizacion.mov"
           align="left"
         />
 
@@ -60,6 +63,7 @@ export default function App() {
             'Recomendaciones basadas en IA',
           ]}
           videoPlaceholder="supplier-demo"
+          videoSrc="/prov.mov"
           align="right"
         />
 
@@ -73,6 +77,7 @@ export default function App() {
             'Insights accionables sobre horarios y días pico',
           ]}
           videoPlaceholder="bi-demo"
+          videoSrc="/int.mov"
           align="left"
         />
 
@@ -86,6 +91,7 @@ export default function App() {
             'Acceso a microcréditos según tu actividad',
           ]}
           videoPlaceholder="score-demo"
+          videoSrc="/score.mov"
           align="right"
         />
 
@@ -99,12 +105,13 @@ export default function App() {
             'Exportación a PDF y Excel',
           ]}
           videoPlaceholder="reports-demo"
+          videoSrc="/rep.mov"
           align="left"
         />
 
         <FeatureDemo
           id="offline"
-          title="Funciona Sin Internet (PWA)"
+          title="Registros Manuales de Ingresos/Egresos y Presupuestos"
           description="Registra ventas sin conexión y sincroniza automáticamente cuando vuelvas a tener internet. Siempre disponible."
           features={[
             'Modo offline completo',
@@ -112,6 +119,7 @@ export default function App() {
             'Instalable como app nativa',
           ]}
           videoPlaceholder="offline-demo"
+          videoSrc="/man.mov"
           align="right"
         />
       </main>
